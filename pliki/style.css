@@ -1,0 +1,103 @@
+html, body
+{
+    font-family: 'Lato', sans-serif;
+    margin: 0 !important;
+    background-color: #555;
+    height: 100%;
+}
+a {color: black; text-decoration: none; display: block;}
+.container
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 45%;
+    text-align: center;
+    font-size: 28px;
+}
+.title
+{
+    text-align: center;
+    font-size: 55px;
+    font-weight: 600;
+    padding: 45px 0;
+    border-top: 70px solid #777;
+    background: url("https://thumbs.gfycat.com/AmazingSpecificAndalusianhorse-size_restricted.gif");
+}
+.titlebar
+{
+    padding: 20px 0;
+    background-color: #777;
+    text-align: center;
+    font-size: 41px;;
+    color: #fdfdfd;
+    text-shadow: 0px 0px 15px rgba(0,0,0,1);
+}
+.button, .subtitle, .topic, .action
+{
+    text-align: center;
+    font-size: 31px;
+    background-color: #ccc;
+    padding: 10px 0;
+    user-select: none;
+    border-bottom: 2px solid #101010;
+    transition: background-color 0.1s ease-in-out;
+}
+.action
+{
+    font-weight: 600;
+    display: inline-block;
+    width: 27%;
+    margin-right: 1%;
+    transition: filter 0.3s ease-in-out;
+}
+.action:hover
+{
+    filter: brightness(89%);
+    cursor: pointer;
+}
+.subtitle
+{
+    transition: none;
+    padding: 20px 0;
+    filter: brightness(79%);
+}
+input[type=number], input[type=button]
+{
+    height: 20px;
+    width: 70px;
+    font-size: 30px;
+    padding: 10px 3px;
+    border: 2px solid #1f1f1f;
+    border-radius: 5px;
+    outline: none;
+}
+input[type=button]
+{
+    height: 50px;
+    width: 150px;
+    font-size: 27px;
+    transition: filter 0.3s ease-in-out;
+}
+input[type=button]:hover
+{
+    filter: brightness(92%);
+    cursor: pointer;
+}
+.topic, .action
+{
+    padding: 15px;
+    border: 2px solid #1a1a1a;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+.rozpocznij
+{
+    background-color: #ccc;
+    text-align: center;
+    font-size: 51px;
+    padding: 12% 0;
+    transition: background-color 0.4s ease-in-out;
+    user-select: none;
+}
+.rozpocznij:hover, .button:hover { background-color: #d7d7d7; }
+.preload * { transition: none; }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zgadnij Liczbę!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Walor">
+
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <script>
+        let liczba = 0;
+        var proby = 1; var win = false;
+        
+
+        function remove()
+        { 
+            element = document.getElementById("get"); element.classList.remove("preload"); var click = new Audio("sounds/clicksound.mp3"); click.play(); 
+
+            var trudnosc = sessionStorage.getItem("trudnosc");
+            sessionStorage.setItem("trudnosc",trudnosc);
+            /////TRUDNOSĆ//////
+            if(trudnosc==1)
+            {
+                liczba = Math.floor(Math.random() * 50+1);
+                document.getElementById("num").setAttribute("max","50");
+                document.getElementById("zakres").innerHTML = "50";
+            }
+            else if(trudnosc==3)
+            {
+                liczba = Math.floor(Math.random() * 500+1);
+                document.getElementById("num").setAttribute("max","500");
+                document.getElementById("zakres").innerHTML = "500";
+            }
+            else
+                liczba = Math.floor(Math.random() * 100+1);
+
+            if(liczba == 0) liczba = 1; 
+            //Skrypt do ZAGADKI//
+            if(liczba%2==0)
+                document.getElementById("parzysta").innerHTML = "parzysta";
+            else
+                document.getElementById("parzysta").innerHTML = "nieparzysta";
+
+            if(liczba%3==0)
+                document.getElementById("podzielna").innerHTML = "podzielna";
+            else
+                document.getElementById("podzielna").innerHTML = "niepodzielna";
+            
+        }
+        function sprawdz() 
+        {
+            var odp = document.getElementById("num").value;
+            
+            if (odp != "") 
+            {
+                var incorrect = new Audio("sounds/incorrect.mp3");
+                if ((odp > liczba)||(odp < liczba)) 
+                { 
+                    if(proby<=1)
+                        document.getElementById("tip").innerHTML = "To nie ta liczba! Zgaduj dalej... ";   
+                    else
+                        document.getElementById("tip").innerHTML = "To nie ta liczba! Zgaduj dalej... "+proby+"x";
+                    proby++;
+                    incorrect.play();
+                }
+                else
+                {
+                    document.getElementById("tip").innerHTML = "Gratulacje udało ci się zgadnąć liczbę za "+proby+". próbą!"; 
+                    if(win==false)
+                    { var winsound = new Audio("sounds/win.mp3"); winsound.play(); win = true; }
+                    document.getElementById("num").setAttribute("disabled",";");
+                    document.getElementById("confirm").value = "Reset";
+                    document.getElementById("confirm").setAttribute("onclick","location.reload();");
+                    document.getElementById("tip").style.color = "#738a0b";
+                }
+            }
+        }
+
+        const zatwierdz = (e) => {
+            if(e.keyCode == 13)
+            sprawdz();
+        }
+        window.addEventListener("keypress", zatwierdz);
+
+    </script>
+
+</head>
+
+<body class="preload" id="get" onload="remove()">
+    <div class="title">Zgadnij Liczbę</div>
+    <div class="titlebar">Tryb Zagadkowy</div>
+    <div class="container">
+
+        <div class="topic" style="margin-top: 30px;">Pomyślałem o liczbię od 1 do <span id="zakres">100</span>. Jest ona <span id="parzysta">?</span> oraz <span id="podzielna">?</span> przez 3. Zgadnij o jaką liczbę mi chodziło. </div>
+
+        <div class="topic">
+                <p> Liczba: <input type="number" min="1" max="100" id="num"> </p>
+                <p> <input type="button" value="Sprawdź" id="confirm" onclick="sprawdz()"> </p>
+        </div>
+
+        <div class="topic" style="color: #08083f;font-weight: 600;" id="tip"> Podaj pierwszą liczbę... </div>
+
+    </div>
+</body>
+
+</html>
