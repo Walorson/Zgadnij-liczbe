@@ -16,6 +16,7 @@ Gra również zawiera 3 poziomy trudności, które mogą zostać zastosowane do 
 * Uproszczony
 * Normalny ***(Domyślny)***
 * Utrudniony
-
+## Zagraj online
+https://walorson.github.io/Zgadnij-liczbe/files/
 ## Pozostałe informacje
 Gra powstała w sierpniu 2020 roku, a dopiero po 3 latach została przesłana na githuba.
