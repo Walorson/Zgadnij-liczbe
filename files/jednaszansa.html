@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zgadnij Liczbę!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Walor">
+
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <script>
+        let liczba = 0;
+        var end = false;
+
+        function remove()
+        { 
+            var trudnosc = sessionStorage.getItem("trudnosc");
+            sessionStorage.setItem("trudnosc",trudnosc);
+            /////TRUDNOSĆ//////
+            if(trudnosc==1)
+            {
+                liczba = Math.floor(Math.random() * 5+1);
+                document.getElementById("num").setAttribute("max","5");
+                document.getElementById("zakres").innerHTML = "5";
+            }
+            else if(trudnosc==3)
+            {
+                liczba = Math.floor(Math.random() * 20+1);
+                document.getElementById("num").setAttribute("max","20");
+                document.getElementById("zakres").innerHTML = "20";
+            }
+            else
+                liczba = Math.floor(Math.random() * 10+1);
+
+            if(liczba == 0) liczba = 1; 
+
+            element = document.getElementById("get"); element.classList.remove("preload"); var click = new Audio("sounds/clicksound.mp3"); click.play(); 
+            if(liczba%2==0)
+                document.getElementById("parzysta").innerHTML = "parzysta";
+            else
+                document.getElementById("parzysta").innerHTML = "nieparzysta"; 
+        }
+        function sprawdz() 
+        {
+            var odp = document.getElementById("num").value;
+            
+            if((odp != "")&&(end==false)) 
+            {
+                var incorrect = new Audio("sounds/incorrect.mp3");
+                if(odp == liczba) 
+                { 
+                    document.getElementById("tip").innerHTML = "Gratulacje udało ci strzelić poprawną liczbę!"; 
+                    var winsound = new Audio("sounds/win.mp3"); winsound.play();
+                    document.getElementById("num").setAttribute("disabled",";");
+                    document.getElementById("confirm").value = "Reset";
+                    document.getElementById("confirm").setAttribute("onclick","location.reload();");
+                    document.getElementById("tip").style.color = "#738a0b"; end = true;
+                }
+                else
+                {
+                    document.getElementById("tip").innerHTML = "Przykro mi, ale ten strzał nie był trafny..."; 
+                    document.getElementById("num").setAttribute("disabled",";");
+                    document.getElementById("confirm").value = "Reset";
+                    document.getElementById("confirm").setAttribute("onclick","location.reload();");
+                    document.getElementById("tip").style.color = "red";
+                    var defeatsound = new Audio("sounds/defeat.mp3"); defeatsound.play(); end = true;
+                }
+            }
+        }
+
+        const zatwierdz = (e) => {
+            if(e.keyCode == 13)
+            sprawdz();
+        }
+        window.addEventListener("keypress", zatwierdz);
+
+    </script>
+
+</head>
+
+<body class="preload" id="get" onload="remove()">
+    <div class="title">Zgadnij Liczbę</div>
+    <div class="titlebar">Tryb Jednej Szansy</div>
+    <div class="container">
+
+        <div class="topic" style="margin-top: 30px;">Pomyślałem o liczbię od 1 do <span id="zakres">10</span>. Zgadnij o jaką liczbę mi
+            chodziło. Pamiętaj, że masz tylko jedną szansę! Podpowiem ci, że ta liczba jest <span id="parzysta">?</span>. </div>
+
+        <div class="topic">
+                <p> Liczba: <input type="number" min="1" max="10" id="num"> </p>
+                <p> <input type="button" value="Sprawdź" id="confirm" onclick="sprawdz()"> </p>
+        </div>
+
+        <div class="topic" style="color: #08083f;font-weight: 600;" id="tip"> Podaj pierwszą liczbę... </div>
+
+    </div>
+</body>
+
+</html>

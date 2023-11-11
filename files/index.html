@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zgadnij Liczbę!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Walor">
+
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <script>
+     function remove() { var element = document.getElementById("get"); element.classList.remove("preload"); var click = new Audio("sounds/clicksound.mp3"); click.play(); } 
+     function playsound() { var audio = new Audio("sounds/hoversound.mp3"); window.focus(); audio.play(); }
+     </script>
+
+</head>
+
+<body class="preload" id="get" onload="remove()">
+    <div class="title" style="border-bottom: 70px solid #777;">Zgadnij Liczbę</div>
+    <a href="choose.html" onmouseover="playsound()"> <div class="rozpocznij">Kliknij, aby rozpocząć</div> </a>
+</body>
+</html>
